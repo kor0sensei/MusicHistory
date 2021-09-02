@@ -72,9 +72,9 @@
 --#11
 --SELECT 
 --Album.Title,
---COUNT(*) SongCount
+--COUNT(Song.id) SongCount
 --FROM Song
---LEFT JOIN Album
+--RIGHT JOIN Album
 --ON Song.AlbumId = Album.Id
 --GROUP BY Album.Title
 
@@ -95,3 +95,25 @@
 --LEFT JOIN Genre
 --ON Song.GenreId = Genre.Id
 --GROUP BY Genre.Name
+
+--#14
+--SELECT Artist.ArtistName ArtistName, COUNT(DISTINCT Album.[Label]) 'Number of Labels'
+--FROM Artist Artist
+--JOIN Album 
+--GROUP BY Artist.ArtistName
+--HAVING COUNT(DISTINCT Album.Label) > 1;
+
+--#15
+--SELECT Title, AlbumLength
+--FROM Album
+--WHERE AlbumLength = (SELECT MAX(AlbumLength) FROM Album)
+
+--#16
+--SELECT Title, SongLength
+--FROM Song
+--WHERE SongLength = (SELECT MAX(SongLength) FROM Song)
+
+--#17
+--SELECT Song.Title SongTitle, Song.SongLength, Album.Title AlbumTitle
+--FROM Song Song JOIN Album Album ON Album.Id = Song.AlbumId
+--WHERE SongLength = (SELECT MAX(SongLength) FROM Song);
